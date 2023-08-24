@@ -32,7 +32,8 @@
   position: relative;
   transition: 0.5s;
 }
-.menu a.active::after, .menu a:hover::after {
+.menu a.active::after,
+.menu a:hover::after {
   content: "";
   width: 100%;
   height: 2px;
@@ -41,4 +42,11 @@
   left: 0;
   bottom: -5px;
   transition: 0.5s;
+}
+
+.hero {
+  background: linear-gradient(#164b60, #164b6072, #164b6047, rgba(255, 255, 255, 0.648), white), url("../img/hero.jpg");
+  background-repeat: no-repeat;
+  background-position: right 30%;
+  background-size: cover;
 }

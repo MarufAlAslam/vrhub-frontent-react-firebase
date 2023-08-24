@@ -60,6 +60,12 @@ const Blogs = () => {
             <BlogCard key={blog.id} blog={blog} />
           ))}
         </div>
+
+        <div className="text-center mt-[50px]">
+          <button className="bg-[#164B60] text-[#fff] px-[50px] py-[10px] ops rounded-[5px]">
+            View All
+          </button>
+        </div>
       </div>
     </div>
   );

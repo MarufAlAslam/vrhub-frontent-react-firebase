@@ -2,10 +2,10 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <div className="py-[200px] bg-[#1B6B93]">
+    <div className="py-[200px] hero">
       <div className="container">
         <div className="text-center">
-          <h1 className="text-[#fff] text-6xl font-bold ops">
+          <h1 className="text-[#fff] text-7xl font-bold ops">
             Hello, Welcome to VR Corner
           </h1>
           <p className="text-[#fff] text-2xl font-bold mt-3 ops">
