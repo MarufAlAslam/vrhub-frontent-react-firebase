@@ -6,11 +6,9 @@ const Hero = () => {
       <div className="container">
         <div className="text-center">
           <h1 className="text-[#fff] text-6xl font-bold ops">
-            {/* welcome message */}
             Hello, Welcome to VR Corner
           </h1>
-          <p className="text-[#fff] text-2xl font-bold mt-3">
-            {/* welcome message */}
+          <p className="text-[#fff] text-2xl font-bold mt-3 ops">
             VR Corner is a platform for VR enthusiasts to learn, share and grow
             together.
           </p>

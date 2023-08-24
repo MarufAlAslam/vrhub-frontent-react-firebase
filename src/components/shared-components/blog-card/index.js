@@ -6,13 +6,13 @@ const BlogCard = ({ blog }) => {
     <div className="grid-item">
       <img src={blog.img} className="w-full" alt="" />
       <div className="content py-6">
-        <h3 className="text-xl font-bold mb-[10px]">{blog.title}</h3>
-        <p className="text-[#666]">{blog.desc}</p>
+        <h3 className="text-2xl font-bold mb-[10px] ops text-[#164B60]">{blog.title}</h3>
+        <p className="text-[#666] lato">{blog.desc}</p>
 
-        <div className="text-cente mt-6">
+        <div className="text-cente mt-8">
           <Link
             to={"/main/blog"}
-            className="bg-[#164B60] text-[#fff] p-[10px] rounded-[5px] mt-[10px]"
+            className="bg-[#164B60] text-[#fff] px-[20px] py-[10px] ops rounded-[5px]"
           >
             Read More
           </Link>
