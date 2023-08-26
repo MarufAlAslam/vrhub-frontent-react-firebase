@@ -17,7 +17,7 @@ const Footer = () => {
         <div className="text-center">
           <img src={logo} className="logo m-auto" alt="" />
 
-          <div className="flex justify-center items-center gap-5 mt-5">
+          <div className="flex md:flex-row flex-col justify-center items-center gap-5 mt-5">
             <Link to="/main" className="text-[#fff]">
               VR CORNER
             </Link>

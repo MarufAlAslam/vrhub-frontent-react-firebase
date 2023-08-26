@@ -89,8 +89,8 @@ const Dashboard = () => {
     },
   ];
   return (
-    <div className="admin-dashboard flex justify-between items-start gap-10">
-      <div className="sidebar w-[300px] p-4 bg-[#164B60] min-h-screen">
+    <div className="admin-dashboard flex md:flex-row flex-col justify-between items-start gap-10">
+      <div className="sidebar md:w-[300px] w-full p-4 bg-[#164B60] md:min-h-screen h-auto">
         <img src={logo} className="w-[150px] mx-auto" alt="" />
 
         <hr className="my-4" />
@@ -121,7 +121,9 @@ const Dashboard = () => {
       </div>
       <div className="main w-full p-4">
         <h3 className="text-4xl">All Blogs</h3>
-        <Table dataSource={dataSource} columns={columns} className="mt-10" />
+        <div className="overflow-x-auto">
+          <Table dataSource={dataSource} columns={columns} className="mt-10" />
+        </div>
       </div>
     </div>
   );

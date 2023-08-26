@@ -50,3 +50,14 @@
   background-position: right 30%;
   background-size: cover;
 }
+
+
+@media screen and (max-width: 767px){
+  .form-container{
+    max-width: 95% !important;
+    padding: 20px;
+  }
+  .ant-table table {
+    width: 300% !IMPORTANT;
+}
+}

@@ -98,8 +98,8 @@ const Blogs = () => {
     <div className="blogs py-[50px]">
       <div className="container">
         <div className="text-center">
-          <h2 className="ops text-5xl text-[#164B60]">{title} Blogs</h2>
-          <p className="ops mb-[50px] text-xl text-[#164B60]">
+          <h2 className="ops md:text-5xl text-3xl text-[#164B60]">{title} Blogs</h2>
+          <p className="ops mb-[50px] md:text-xl text-[#164B60]">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
           </p>
         </div>
