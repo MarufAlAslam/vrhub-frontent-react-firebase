@@ -25,7 +25,7 @@ const LoginMain = () => {
         setError(null);
         setIsLoading(false);
         alert("Login Successfully");
-        navigate("/main");
+        navigate("/main/vr-corner");
       })
       .catch((error) => {
         setError(error.message);
@@ -41,7 +41,7 @@ const LoginMain = () => {
         setError(null);
         setIsLoading(false);
         alert("Login Successfully");
-        navigate("/main");
+        navigate("/main/vr-corner");
       })
       .catch((error) => {
         setError(error.message);

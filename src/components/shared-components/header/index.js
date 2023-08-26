@@ -7,12 +7,12 @@ const Header = () => {
     <div className="bg-[#164B60] py-3">
       <div className="container">
         <div className="flex justify-between items-center">
-          <Link to="/main">
+          <Link to="/main/vr-corner">
             <img src={logo} className="logo" alt="" />
           </Link>
 
           <div className="menu flex justify-end items-center gap-5">
-            <NavLink to="/main" className="text-[#fff]">
+            <NavLink to="/main/vr-corner" className="text-[#fff]">
               VR CORNER
             </NavLink>
             <NavLink to="/main/vr-education" className="text-[#fff]">

@@ -1,0 +1,123 @@
+import React, { useEffect, useState } from "react";
+import logo from "../../../assets/img/logo.png";
+import { Link } from "react-router-dom";
+import { FaBook, FaDashcube, FaSignOutAlt } from "react-icons/fa";
+import { Table } from "antd";
+
+const Dashboard = () => {
+  const [dataSource, setDataSource] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8000/api/v1/getBlogs", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        setDataSource(data);
+      });
+  }, []);
+  //   const dataSource = [
+  //     {
+  //       key: "1",
+  //       title: "Mike",
+  //       publishedDate: 32,
+  //       writtenBy: "10 Downing Street",
+  //     },
+  //     {
+  //       key: "2",
+  //       title: "John",
+  //       publishedDate: 42,
+  //       writtenBy: "10 Downing Street",
+  //     },
+  //   ];
+
+  const columns = [
+    {
+      title: "Title",
+      dataIndex: "title",
+      key: "title",
+    },
+    {
+      title: "Published Date",
+      dataIndex: "publishedDate",
+      key: "publishedDate",
+    },
+    {
+      title: "Written By",
+      dataIndex: "author",
+      key: "author",
+    },
+    {
+      title: "category",
+      dataIndex: "category",
+      key: "category",
+    },
+    {
+      title: <p className="text-right">Actions</p>,
+      dataIndex: "action",
+      className: "text-right",
+      key: "action",
+      render: (
+        text,
+        record // <Button type="primary">Edit</Button>
+      ) => (
+        <div className="flex gap-4 justify-end items-center">
+          <Link
+            to={`/${record._id}`}
+            className="bg-[#164B60] text-white px-4 py-2 rounded-[5px]"
+          >
+            View
+          </Link>
+          <button className="bg-[#F44336] text-white px-4 py-2 rounded-[5px]">
+            Delete
+          </button>
+        </div>
+      ),
+    },
+  ];
+  return (
+    <div className="admin-dashboard flex justify-between items-start gap-10">
+      <div className="sidebar w-[300px] p-4 bg-[#164B60] min-h-screen">
+        <img src={logo} className="w-[150px] mx-auto" alt="" />
+
+        <hr className="my-4" />
+
+        <ul className="text-white">
+          <li className="mb-4">
+            <Link
+              to="/admin/dashboard"
+              className="flex gap-4 justify-start items-center"
+            >
+              <FaDashcube /> Dashboard
+            </Link>
+          </li>
+          <li className="mb-4">
+            <Link
+              to="/admin/add-blog"
+              className="flex gap-4 justify-start items-center"
+            >
+              <FaBook /> Add Blog
+            </Link>
+          </li>
+          <li className="mb-4">
+            <Link to="/admin" className="flex gap-4 justify-start items-center">
+              <FaSignOutAlt className="rotate-[180deg]" /> Log Out
+            </Link>
+          </li>
+        </ul>
+      </div>
+      <div className="main w-full p-4">
+        <h3 className="text-4xl">All Blogs</h3>
+        <Table dataSource={dataSource} columns={columns} className="mt-10" />
+      </div>
+    </div>
+  );
+};
+
+export default Dashboard;

@@ -4,10 +4,17 @@ import { Link } from "react-router-dom";
 const BlogCard = ({ blog }) => {
   return (
     <div className="grid-item">
-      <img src={blog.img} className="w-full" alt="" />
+      <img src={blog.image} className="w-full h-[300px] object-cover" alt="" />
       <div className="content py-6">
         <h3 className="text-2xl font-bold mb-[10px] ops text-[#164B60]">{blog.title}</h3>
-        <p className="text-[#666] lato">{blog.desc}</p>
+        <p className="text-[#666] lato">{blog.description}</p>
+
+        <hr className="my-4" />
+
+        <div className="flex justify-between items-center">
+          <p className="text-[#666] lato font-bold">{blog.author}</p>
+          <p className="text-[#666] lato font-bold">{blog.publishedDate}</p>
+        </div>
 
         <div className="text-cente mt-8">
           <Link
