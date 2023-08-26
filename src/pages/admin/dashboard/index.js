@@ -7,7 +7,7 @@ import { Table } from "antd";
 const Dashboard = () => {
   const [dataSource, setDataSource] = useState([]);
 
-  useEffect(() => {
+  const getDataSource = () => {
     fetch("http://localhost:8000/api/v1/getBlogs", {
       method: "GET",
       headers: {
@@ -21,21 +21,31 @@ const Dashboard = () => {
         console.log(data);
         setDataSource(data);
       });
+  };
+  useEffect(() => {
+    getDataSource();
   }, []);
-  //   const dataSource = [
-  //     {
-  //       key: "1",
-  //       title: "Mike",
-  //       publishedDate: 32,
-  //       writtenBy: "10 Downing Street",
-  //     },
-  //     {
-  //       key: "2",
-  //       title: "John",
-  //       publishedDate: 42,
-  //       writtenBy: "10 Downing Street",
-  //     },
-  //   ];
+
+  const deteleBlog = (id) => {
+    fetch(`http://localhost:8000/api/v1/deleteBlog/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        if (data) {
+          alert("Blog Deleted Successfully");
+          getDataSource();
+        } else {
+          alert("Invalid Credentials");
+        }
+      });
+  };
 
   const columns = [
     {
@@ -68,13 +78,10 @@ const Dashboard = () => {
         record // <Button type="primary">Edit</Button>
       ) => (
         <div className="flex gap-4 justify-end items-center">
-          <Link
-            to={`/${record._id}`}
-            className="bg-[#164B60] text-white px-4 py-2 rounded-[5px]"
+          <button
+            onClick={() => deteleBlog(record._id)}
+            className="bg-[#F44336] text-white px-4 py-2 rounded-[5px]"
           >
-            View
-          </Link>
-          <button className="bg-[#F44336] text-white px-4 py-2 rounded-[5px]">
             Delete
           </button>
         </div>
