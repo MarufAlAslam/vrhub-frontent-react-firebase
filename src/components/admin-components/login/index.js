@@ -12,7 +12,7 @@ const AdminLoginMain = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-    fetch("https://vr-hub-server.vercel.app/api/v1/adminLogin", {
+    fetch("https://vr-hub-server.vercel.app/api/v1/adminlogin", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
