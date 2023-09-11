@@ -10,7 +10,7 @@ const BlogCard = ({ blog }) => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(true);
-      fetch(`http://localhost:8000/api/v1/getComments/${blog._id}`, {
+      fetch(`https://vr-hub-server.vercel.app/api/v1/getComments/${blog._id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -49,7 +49,7 @@ const BlogCard = ({ blog }) => {
     const blogId = modalBlog._id;
     const author = JSON.parse(localStorage.getItem("loggedin")).email;
 
-    fetch(`http://localhost:8000/api/v1/addComment/${blogId}`, {
+    fetch(`https://vr-hub-server.vercel.app/api/v1/addComment/${blogId}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

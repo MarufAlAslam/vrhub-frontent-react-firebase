@@ -12,7 +12,7 @@ const Blogs = () => {
   const [filteredBlogs, setFilteredBlogs] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/v1/getBlogs", {
+    fetch("https://vr-hub-server.vercel.app/api/v1/getBlogs", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
