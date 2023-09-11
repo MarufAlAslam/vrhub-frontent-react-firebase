@@ -8,7 +8,7 @@ const Dashboard = () => {
   const [dataSource, setDataSource] = useState([]);
 
   const getDataSource = () => {
-    fetch("https://vr-hub-server.vercel.app/api/v1/getBlogs", {
+    fetch("http://localhost:8000/api/v1/getBlogs", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -27,7 +27,7 @@ const Dashboard = () => {
   }, []);
 
   const deteleBlog = (id) => {
-    fetch(`https://vr-hub-server.vercel.app/api/v1/deleteBlog/${id}`, {
+    fetch(`http://localhost:8000/api/v1/deleteBlog/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

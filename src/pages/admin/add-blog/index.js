@@ -24,7 +24,7 @@ const AddBlog = () => {
       publishedDate,
     };
 
-    fetch("https://vr-hub-server.vercel.app/api/v1/createBlog", {
+    fetch("http://localhost:8000/api/v1/createBlog", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),

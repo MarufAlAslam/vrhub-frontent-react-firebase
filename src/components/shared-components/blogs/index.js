@@ -12,7 +12,7 @@ const Blogs = () => {
   const [filteredBlogs, setFilteredBlogs] = useState([]);
 
   useEffect(() => {
-    fetch("https://vr-hub-server.vercel.app/api/v1/getBlogs", {
+    fetch("http://localhost:8000/api/v1/getBlogs", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -100,7 +100,7 @@ const Blogs = () => {
         <div className="text-center">
           <h2 className="ops md:text-5xl text-3xl text-[#164B60]">{title} Blogs</h2>
           <p className="ops mb-[50px] md:text-xl text-[#164B60]">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
+            All the latest news and updates from the VR Hub related to {title}
           </p>
         </div>
         <div className="grid gap-8 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">

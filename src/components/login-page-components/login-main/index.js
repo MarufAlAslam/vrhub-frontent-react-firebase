@@ -21,6 +21,7 @@ const LoginMain = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        localStorage.setItem("loggedin", JSON.stringify(user));
         form.reset();
         setError(null);
         setIsLoading(false);
@@ -38,6 +39,7 @@ const LoginMain = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        localStorage.setItem("loggedin", JSON.stringify(user));
         setError(null);
         setIsLoading(false);
         alert("Login Successfully");

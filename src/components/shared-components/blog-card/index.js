@@ -1,7 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const BlogCard = ({ blog }) => {
+  const [loading, setLoading] = useState(true);
   const [modalBlog, setModalBlog] = useState({});
+  const [comments, setComments] = useState([]);
+
+  // console.log(blog._id);
+  // run useeffect after 2 seconds
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(true);
+      fetch(`http://localhost:8000/api/v1/getComments/${blog._id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => {
+          console.log(res);
+          return res.json();
+        })
+        .then((data) => {
+          console.log(data);
+          setComments(data.comments);
+          setLoading(false);
+        });
+    }, 2000);
+  }, [blog._id]);
   const displayModal = (blog) => {
     setModalBlog(blog);
     const modal = document.querySelector(".modal");
@@ -15,6 +40,35 @@ const BlogCard = ({ blog }) => {
     const modalBg = document.querySelector(".modal-bg");
     modal.style.display = "none";
     modalBg.style.display = "none";
+  };
+
+  const addComment = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const comment = form.comment.value;
+    const blogId = modalBlog._id;
+    const author = JSON.parse(localStorage.getItem("loggedin")).email;
+
+    fetch(`http://localhost:8000/api/v1/addComment/${blogId}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        comment: comment,
+        author: author,
+      }),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        if (data) {
+          alert("Comment Added Successfully");
+          form.reset();
+        } else {
+          alert("Something went wrong");
+        }
+      });
   };
   return (
     <>
@@ -56,7 +110,7 @@ const BlogCard = ({ blog }) => {
         onClick={hideModal}
         className="modal-bg hidden fixed h-screen w-full bg-black opacity-60 top-0 left-0 z-10"
       ></div>
-      <div className="modal hidden w-[500px] max-w-[95%] p-10 bg-white shadow fixed top-[50%] z-20 rounded left-[50%] translate-x-[-50%] translate-y-[-50%]">
+      <div className="modal max-h-[75vh] overflow-y-auto hidden w-[90%] max-w-[95%] p-10 bg-white shadow fixed top-[50%] z-20 rounded left-[50%] translate-x-[-50%] translate-y-[-50%]">
         <img
           src={modalBlog.image}
           className="w-full h-[300px] object-cover mb-4"
@@ -75,6 +129,46 @@ const BlogCard = ({ blog }) => {
             {modalBlog.publishedDate}
           </p>
         </div>
+
+        <hr className="my-4" />
+        <h2 className="text-xl mb-2">Comments</h2>
+        {!loading && comments && comments.length >= 1 ? (
+          comments.map((comment) => (
+            <div className="mb-4">
+              <p className="text-[#000] text-lg font-bold lato">
+                {comment.comment}
+              </p>
+              <p className="text-[#666] text-sm lato font-bold">
+                {comment.author}
+              </p>
+            </div>
+          ))
+        ) : (
+          <p className="text-[#666] lato">No Comments Found</p>
+        )}
+        <hr className="my-4" />
+
+        <form action="" onSubmit={addComment}>
+          <div className="mb-[30px]">
+            <label htmlFor="comment" className="block mb-[10px]">
+              Comment
+            </label>
+            <textarea
+              name="comment"
+              id="comment"
+              cols="30"
+              rows="5"
+              className="w-full resize-none border-[1px] border-[#164B60] rounded-[5px] p-[10px] outline-none focus:border-[#4FC0D0]"
+            ></textarea>
+
+            <button
+              type="submit"
+              className="bg-[#164B60] text-[#fff] p-[15px] text-xl block rounded-[5px] ms-auto mt-5"
+            >
+              Add Comment
+            </button>
+          </div>
+        </form>
       </div>
     </>
   );
