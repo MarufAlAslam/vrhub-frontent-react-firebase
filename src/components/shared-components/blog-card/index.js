@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 
 const BlogCard = ({ blog }) => {
@@ -13,9 +14,7 @@ const BlogCard = ({ blog }) => {
   }, [blog.image]);
 
   // console.log(blog._id);
-  // run useeffect after 2 seconds
-  useEffect(() => {
-    setLoading(true);
+  const getComments = async () => {
     fetch(`https://vr-hub-server.vercel.app/api/v1/getComments/${blog._id}`, {
       method: "GET",
       headers: {
@@ -31,7 +30,12 @@ const BlogCard = ({ blog }) => {
         setComments(data.comments);
         setLoading(false);
       });
-  }, [blog._id, blog.comments]);
+  };
+  // run useeffect after 2 seconds
+  useEffect(() => {
+    setLoading(true);
+    getComments();
+  }, []);
   const displayModal = (blog) => {
     console.log(blog);
     setModalBlog(blog);
@@ -75,7 +79,7 @@ const BlogCard = ({ blog }) => {
         if (data) {
           alert("Comment Added Successfully");
           form.reset();
-          window.location.reload();
+          getComments()
         } else {
           alert("Something went wrong");
         }
